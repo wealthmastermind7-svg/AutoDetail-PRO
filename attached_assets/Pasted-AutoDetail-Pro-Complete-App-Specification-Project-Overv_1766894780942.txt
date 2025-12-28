@@ -1,0 +1,469 @@
+AutoDetail Pro - Complete App Specification
+Project Overview
+Build a production-ready, scalable multi-tenant booking platform for auto detailing businesses using React Native (Expo) with iOS and Android support. The app features a freemium monetization model powered by RevenueCat, offering business owners a comprehensive dashboard to manage appointments, services, and customers, while providing customers with a seamless public booking experience.
+
+App Identity
+App Name: AutoDetail Pro
+Tagline: "Professional auto care, seamlessly booked"
+Bundle Identifier: com.autodetailpro.app
+Entitlement ID: "AutoDetail Pro Premium"
+
+Design System
+Color Palette (Premium Black & White)
+Pure Black (#000000) - Primary text, high-emphasis elements
+Charcoal (#1A1A1A) - Cards, elevated surfaces
+Graphite (#2D2D2D) - Secondary containers
+Slate (#4A4A4A) - Dividers, borders
+Smoke (#6B6B6B) - Secondary text
+Silver (#9E9E9E) - Tertiary text
+Fog (#D4D4D4) - Disabled states
+Whisper (#EBEBEB) - Subtle backgrounds
+Pearl (#F5F5F5) - Light surfaces
+Pure White (#FFFFFF) - Primary background
+Typography (Oversized Hierarchy)
+Display: 72-96px, weight 200 - Hero numbers (revenue, booking counts)
+Headline 1: 48-56px, weight 700 - Section titles
+Headline 2: 32-40px, weight 600 - Card headers
+Body Large: 24px, weight 400 - Primary content
+Body: 18px, weight 400 - Standard text
+Caption: 14px, weight 400 - Metadata, timestamps
+Spacing Scale
+xs: 4px, sm: 8px, md: 12px, lg: 16px, xl: 20px
+2xl: 24px, 3xl: 32px, 4xl: 40px, 5xl: 48px
+Input/Button Height: 56px
+Border Radius
+xs: 8px, sm: 12px, md: 16px, lg: 20px, xl: 24px, 2xl: 32px, full: 9999px
+Animation Timing
+fast: 150ms, normal: 200ms, slow: 300ms, cinematic: 400ms, graph: 600ms
+Spring config: damping 15, mass 0.3, stiffness 150
+Tech Stack
+Frontend
+Framework: React Native (Expo SDK 52+)
+Navigation: React Navigation 7+ with native stack
+State Management: React Query (@tanstack/react-query)
+Animations: react-native-reanimated, react-native-gesture-handler
+UI Components: expo-blur, expo-image, expo-haptics, expo-glass-effect
+Icons: Feather icons from @expo/vector-icons
+Storage: AsyncStorage for local persistence, expo-secure-store for tokens
+Monetization: react-native-purchases (RevenueCat)
+Backend
+Runtime: Node.js with Express.js
+Language: TypeScript
+Database: PostgreSQL
+ORM: Drizzle ORM with drizzle-zod for validation
+Email: Resend for transactional emails
+QR Codes: qrcode package for booking link generation
+Database Schema
+Tables
+businesses (Multi-tenant core)
+{
+  id: varchar (UUID primary key),
+  name: text (business name),
+  slug: text (unique URL slug for public booking),
+  description: text,
+  phone: text,
+  email: text,
+  website: text,
+  address: text,
+  timezone: text (default "America/New_York"),
+  notificationsEnabled: boolean (default true),
+  ownerToken: text (UUID for admin authentication),
+  isPremium: boolean (default false),
+  premiumExpiresAt: timestamp,
+  weeklyShareCount: integer (free tier limit tracking),
+  weeklyQrCount: integer (free tier limit tracking),
+  weeklyResetAt: timestamp,
+  createdAt: timestamp,
+  updatedAt: timestamp
+}
+services
+{
+  id: varchar (UUID primary key),
+  businessId: varchar (foreign key → businesses),
+  name: text (e.g., "Full Detail", "Interior Clean", "Ceramic Coating"),
+  description: text,
+  duration: integer (minutes),
+  price: integer (cents),
+  isActive: boolean (default true),
+  createdAt: timestamp
+}
+customers
+{
+  id: varchar (UUID primary key),
+  businessId: varchar (foreign key → businesses),
+  name: text,
+  email: text,
+  phone: text,
+  totalBookings: integer (default 0),
+  createdAt: timestamp
+}
+bookings
+{
+  id: varchar (UUID primary key),
+  businessId: varchar (foreign key → businesses),
+  customerId: varchar (foreign key → customers),
+  serviceId: varchar (foreign key → services),
+  date: text (YYYY-MM-DD format),
+  time: text (HH:MM format),
+  status: text ("pending" | "confirmed" | "completed" | "cancelled"),
+  totalPrice: integer (cents),
+  notes: text (vehicle info, special requests),
+  createdAt: timestamp,
+  updatedAt: timestamp
+}
+availability
+{
+  id: varchar (UUID primary key),
+  businessId: varchar (foreign key → businesses),
+  dayOfWeek: integer (0-6, Sunday-Saturday),
+  startTime: text (HH:MM),
+  endTime: text (HH:MM),
+  isActive: boolean (default true)
+}
+pushTokens
+{
+  id: varchar (UUID primary key),
+  businessId: varchar (foreign key → businesses),
+  token: text (Expo push token),
+  platform: text ("ios" | "android" | "web"),
+  deviceName: text,
+  isActive: boolean (default true),
+  createdAt: timestamp,
+  updatedAt: timestamp
+}
+Navigation Architecture
+Admin Dashboard (Tab Navigator - 5 tabs)
+Dashboard - Revenue metrics, upcoming appointments, booking graphs
+Calendar - Monthly view with booking highlights, availability editor
+Services - Service list with CRUD, pricing management
+Customers - Customer list, booking history per customer
+Settings - Business info, booking link sharing, QR code, embed widget, demo data
+Public Booking Flow (Stack Navigator)
+Select Service - Browse available detailing packages
+Select Time - Calendar with available time slots
+Checkout - Customer info form, booking summary
+Confirmation - Success message, booking details
+Additional Screens
+Onboarding - 3-page cinematic intro for first-time users
+Service Editor - Modal for creating/editing services
+Availability Editor - Business hours configuration
+Feature Specifications
+1. Onboarding Flow (3 Pages)
+Page 1: "Detailing Made Effortless"
+
+Hero glass card with daily goal meter (circular progress)
+Client list preview with skeleton UI
+Calendar icon badge, "New Client" chip animation
+Page 2: "Built for How You Work"
+
+Floating industry chips: "Mobile Detailing", "Fixed Location", "Fleet Services", "Ceramic Specialists"
+Animated entry with spring physics
+Page 3: "Every Appointment Captured"
+
+Upcoming booking card with glass effect
+Shows: Customer name, service, date/time
+Calendar chip with blue accent
+Navigation: Pagination dots, "Get Started" button, "Skip" option, "Log in to existing account" link
+
+2. Dashboard Screen
+Hero Metrics Card:
+
+Large display number (72px) showing today's revenue
+Circular capacity meter (% booked for the day)
+Week-over-week comparison
+Revenue Graph:
+
+7-day or 30-day line graph with bezier curves
+Animated drawing effect (600ms staggered)
+Black on white, minimal gridlines
+Upcoming Appointments:
+
+Toggle: "This Week" (top 3) or "All"
+Cards showing: Customer name, vehicle info, service, time
+Tap to view booking details
+3. Calendar Screen
+Monthly Grid:
+
+Circular day indicators
+Booked days: filled black circles
+Today: outlined with accent
+Selected: inverted (white on black)
+Day Detail View:
+
+List of appointments for selected date
+Time blocks with booking info
+Link to edit availability
+Availability Editor:
+
+7-day week grid (Sun-Sat)
+Start/end time pickers per day
+Enable/disable toggle per day
+4. Services Management
+Service List:
+
+Cards with service name (32px), duration, price (40px display)
+Active/inactive toggle
+Booking rate meter
+Service Editor (Modal):
+
+Fields: Name, Description, Duration (minutes), Price ($)
+Auto-save drafts
+Delete confirmation dialog
+Default Auto Detailing Services:
+
+- Express Wash: 30 min, $35
+- Interior Detail: 60 min, $75
+- Exterior Detail: 90 min, $100
+- Full Detail: 120 min, $150
+- Ceramic Coating: 180 min, $300
+- Paint Correction: 240 min, $400
+5. Customer Management
+Customer List:
+
+Name, email, phone, total bookings
+Search/filter capability
+Tap for customer detail
+Customer Detail:
+
+Contact info
+Booking history list
+Total spend calculation
+6. Settings Screen
+Business Information:
+
+Editable: Name, Phone, Website, Address
+Business logo upload
+Sharing Tools:
+
+Booking Link: Copy to clipboard, share sheet
+QR Code: Generate/download PNG, display modal
+Embed Widget: Calendly-style HTML snippet for websites
+Data Management:
+
+Demo data loader (5 auto detailing templates)
+Clear all data option (with confirmation)
+Export data (future feature)
+Premium Features:
+
+Paywall trigger for unlimited shares/QR codes
+Restore purchases button
+Subscription status display
+7. Public Booking Flow
+Service Selection:
+
+Full-width service cards with imagery
+Price in display typography (56px)
+Duration and description
+Time Selection:
+
+Date picker (calendar grid)
+Available slots based on business hours and existing bookings
+30-minute increments by default
+Checkout:
+
+Customer fields: Name, Email, Phone
+Vehicle info: Make, Model, Year (optional notes)
+Booking summary card with total price
+Terms acceptance checkbox
+Confirmation:
+
+Animated checkmark
+Booking reference number
+Summary of service, date, time
+"Add to Calendar" option
+8. QR Code Generation
+Generate QR linking to: https://[domain]/book/[business-slug]
+Download as PNG
+Premium: Unlimited generations
+Free tier: 3 per week
+9. Embed Widget
+JavaScript snippet for website integration
+Iframe-based booking calendar
+Customizable button trigger
+Template HTML/JS files served from backend
+10. Push Notifications
+Register Expo push tokens per device
+Notify business owner on new booking
+Token management (activate/deactivate)
+Test notification button in settings
+API Endpoints
+Business Management
+GET    /api/businesses/:id           - Get business details
+POST   /api/businesses               - Create business
+PATCH  /api/businesses/:id           - Update business (protected)
+Services
+GET    /api/businesses/:businessId/services   - List services
+GET    /api/services/:id                      - Get single service
+POST   /api/businesses/:businessId/services   - Create service (protected)
+PATCH  /api/services/:id                      - Update service (protected)
+DELETE /api/services/:id                      - Delete service (protected)
+Customers
+GET    /api/businesses/:businessId/customers  - List customers
+GET    /api/customers/:id                     - Get single customer
+POST   /api/businesses/:businessId/customers  - Create customer
+PATCH  /api/customers/:id                     - Update customer (protected)
+Bookings
+GET    /api/businesses/:businessId/bookings   - List bookings (optional ?date=)
+GET    /api/bookings/:id                      - Get single booking
+POST   /api/businesses/:businessId/bookings   - Create booking
+PATCH  /api/bookings/:id                      - Update booking (protected)
+Availability
+GET    /api/businesses/:businessId/availability         - Get all availability
+PUT    /api/businesses/:businessId/availability/:day    - Update single day (protected)
+PUT    /api/businesses/:businessId/availability         - Bulk update (protected)
+Time Slots
+GET    /api/businesses/:businessId/slots/:date?serviceId=  - Get available slots
+Statistics
+GET    /api/businesses/:businessId/stats   - Dashboard metrics (protected)
+Utilities
+GET    /api/businesses/:businessId/qrcode?format=png|json  - Generate QR
+GET    /api/businesses/:businessId/embed-code              - Get embed snippet (protected)
+POST   /api/businesses/:businessId/demo-data               - Load demo data (protected)
+Push Notifications
+POST   /api/push-tokens                              - Register token
+DELETE /api/push-tokens                              - Unregister token
+GET    /api/businesses/:businessId/push-tokens       - Count tokens (protected)
+POST   /api/businesses/:businessId/test-notification - Send test (protected)
+Public Routes
+GET    /book/:slug     - Public booking page
+GET    /embed/:slug    - Embeddable widget
+GET    /embed.js       - Widget script
+Authentication & Security
+Token-Based Ownership
+Each business has a unique ownerToken (UUID)
+Admin routes require x-owner-token header
+Middleware validates token against business ownership
+Public routes (booking, services list) remain open
+Protected Routes Middleware
+async function verifyBusinessOwnership(req, res, next) {
+  const token = req.headers['x-owner-token'];
+  const business = await storage.getBusinessByToken(token);
+  if (!business || business.id !== req.params.businessId) {
+    return res.status(403).json({ error: 'Unauthorized' });
+  }
+  req.business = business;
+  next();
+}
+Monetization (RevenueCat)
+Entitlement
+"AutoDetail Pro Premium"
+
+Products
+Monthly: $29.99/month
+Yearly: $269/year (save 25%)
+Free Tier Limits
+3 booking link shares per week
+3 QR code generations per week
+1 embed widget
+Premium Benefits
+Unlimited booking link shares
+Unlimited QR codes
+Unlimited embed widgets
+Priority support badge
+Paywall Trigger Points
+Share button (after limit reached)
+QR generation (after limit reached)
+Embed code copy (after limit reached)
+Demo Data Templates
+Auto Detailing Business Types
+Mobile Detailing - Services: Express Wash, Full Detail, Ceramic Coating
+Fixed Location Shop - Services: All packages, Paint Correction
+Fleet Services - Services: Fleet Wash, Fleet Detail, Corporate Packages
+Luxury/Exotic Specialist - Services: Premium Detail, Paint Correction, PPF Prep
+RV/Boat Detailing - Services: RV Wash, Boat Detail, Marine Ceramic
+Each template includes:
+
+5-7 services with realistic pricing
+10-20 sample customers
+15-30 bookings across various statuses
+Business hours configuration
+Component Library
+Core Components
+ThemedText - Text with theme-aware colors
+ThemedView - View with theme-aware background
+Card - Elevated container with subtle shadow
+HeaderButton - Navigation header action button
+ErrorBoundary - App crash recovery with restart
+Custom Components
+CircularMeter - SVG-based progress ring
+RevenueGraph - Animated line chart with bezier curves
+PaywallModal - Full-screen purchase interface
+QRCodeModal - QR display and download
+KeyboardAwareScrollView - Auto keyboard avoidance
+App Icon
+Modern calendar with clock overlay
+Layered glass/depth effect
+Black background with white line art
+Represents scheduling/time management
+Files Structure
+├── client/
+│   ├── App.tsx
+│   ├── index.js
+│   ├── assets/
+│   │   ├── app-icon.png
+│   │   └── stock_images/
+│   ├── components/
+│   │   ├── Card.tsx
+│   │   ├── ErrorBoundary.tsx
+│   │   ├── KeyboardAwareScrollView.tsx
+│   │   ├── PaywallModal.tsx
+│   │   ├── ThemedText.tsx
+│   │   └── ThemedView.tsx
+│   ├── constants/
+│   │   └── theme.ts
+│   ├── contexts/
+│   │   ├── BusinessContext.tsx
+│   │   └── PremiumContext.tsx
+│   ├── hooks/
+│   │   ├── useScreenOptions.ts
+│   │   └── useTheme.ts
+│   ├── lib/
+│   │   ├── api.ts
+│   │   ├── query-client.ts
+│   │   └── revenuecat.ts
+│   ├── navigation/
+│   │   ├── BookingFlowNavigator.tsx
+│   │   ├── MainTabNavigator.tsx
+│   │   └── RootStackNavigator.tsx
+│   └── screens/
+│       ├── booking/
+│       │   ├── CheckoutScreen.tsx
+│       │   ├── ConfirmationScreen.tsx
+│       │   ├── SelectServiceScreen.tsx
+│       │   └── SelectTimeScreen.tsx
+│       ├── AvailabilityEditorScreen.tsx
+│       ├── CalendarScreen.tsx
+│       ├── CustomersScreen.tsx
+│       ├── DashboardScreen.tsx
+│       ├── OnboardingScreen.tsx
+│       ├── ServiceEditorScreen.tsx
+│       ├── ServicesScreen.tsx
+│       └── SettingsScreen.tsx
+├── server/
+│   ├── db.ts
+│   ├── email.ts
+│   ├── index.ts
+│   ├── notifications.ts
+│   ├── routes.ts
+│   ├── storage.ts
+│   ├── middleware/
+│   │   └── auth.ts
+│   ├── static/
+│   │   └── embed.js
+│   └── templates/
+│       ├── booking.html
+│       ├── embed.html
+│       └── landing-page.html
+├── shared/
+│   └── schema.ts
+├── app.json
+├── design_guidelines.md
+└── replit.md
+Key Implementation Notes
+Multi-tenancy: All data queries filter by businessId
+Haptic feedback: Use on all interactive elements (Light, Medium, Heavy)
+Safe areas: Always respect device notch/home indicator
+Error handling: Graceful fallbacks, retry logic, user-friendly messages
+Offline support: Cache critical data with AsyncStorage
+Performance: Use FlatList for lists, memoize expensive renders
+Accessibility: 44x44px touch targets, proper labels, contrast ratios
