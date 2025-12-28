@@ -112,9 +112,7 @@ function OnboardingPage2() {
         {chips.map((chip, index) => (
           <Animated.View
             key={chip}
-            entering={withSpring(
-              FadeIn.delay(300 + index * 150).springify().damping(Animation.spring.damping)
-            )}
+            entering={FadeIn.delay(300 + index * 150).springify()}
             style={[
               styles.chip,
               {
