@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AutoDetail Pro Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#111111", // Deep Black for primary actions
+                        "background-light": "#F9FAFB", // Very light gray/white
+                        "background-dark": "#050505", // True black
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#121212",
+                        "accent-silver": "#E5E7EB",
+                        "gold-accent": "#D4AF37", // Subtle luxury accent
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                        'xl': "1rem",
+                        '2xl': "1.5rem",
+                    },
+                    backgroundImage: {
+                        'metallic-gradient': 'linear-gradient(135deg, #e0e0e0 0%, #ffffff 50%, #e0e0e0 100%)',
+                        'metallic-dark': 'linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #000000 100%)',
+                    }
+                },
+            },
+        };
+    </script>
+<style>.hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }@keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-anim {
+            animation: float 6s ease-in-out infinite;
+        }.circle-progress {
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-sans antialiased transition-colors duration-300">
+<nav class="fixed top-0 w-full z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+<div class="max-w-md mx-auto px-6 py-4 flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-icons text-xl dark:text-white">stars</span>
+<span class="font-display font-bold text-lg tracking-wider uppercase">LuxeDetail</span>
+</div>
+<button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+<span class="material-icons text-gray-500 dark:text-gray-400">menu</span>
+</button>
+</div>
+</nav>
+<main class="max-w-md mx-auto min-h-screen pt-20 pb-24 relative overflow-hidden">
+<section class="px-6 mb-12 relative z-10">
+<h1 class="font-display text-5xl md:text-6xl leading-[0.9] text-gray-900 dark:text-white mb-6">
+                Perfection <br/>
+<span class="italic text-gray-500 dark:text-gray-400">in every</span> <br/>
+                Detail.
+            </h1>
+<div class="relative w-full h-80 rounded-2xl overflow-hidden shadow-2xl mb-8 group">
+<img alt="Close up of a luxury car hood with water beading after ceramic coating" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 dark:opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGSwhj5tszFo5zg6i9yUgBFZk2oddb3f5bmtF_LBlOFZS-3cm3gzIPoxzAOooRd18aTgRb_4pCI5PHhVxvH6AYS2KzIRKmtwgIIXsc9OCbXi93Wx86rBlNO1cLZRP4uDwh9fGzLZ7bLkC9ZEQJgp29a78YxS0Gy-3ESAZaY1oOTN6QGgOBfwUldksUMTLppT_dpQV8LFAU3jSoRKYY38FWHqCIgWsHj6zRGiXiycJvgHiuigUNRn0ubWicXiFcQYtKmkxgMn_wIu6a"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6">
+<span class="text-white/80 text-sm font-medium tracking-widest uppercase mb-1">Ceramic Coating</span>
+<span class="text-white text-xl font-display italic">Ultimate Protection</span>
+</div>
+</div>
+<p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
+                Experience automotive care redefined. We transform vehicles with precision engineering and artisan craftsmanship.
+            </p>
+</section>
+<section class="px-6 mb-16 relative">
+<div class="absolute -right-20 top-10 w-64 h-64 bg-gray-200 dark:bg-gray-800 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-gray-800 p-5 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 float-anim" style="animation-delay: 0s;">
+<div class="relative w-16 h-16 mb-4">
+<svg class="w-full h-full" viewBox="0 0 100 100">
+<circle class="text-gray-200 dark:text-gray-800 stroke-current" cx="50" cy="50" fill="transparent" r="40" stroke-width="8"></circle>
+<circle class="text-gray-900 dark:text-white stroke-current circle-progress" cx="50" cy="50" fill="transparent" r="40" stroke-dasharray="251.2" stroke-dashoffset="25" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+<span class="text-sm font-bold">98%</span>
+</div>
+</div>
+<h3 class="font-display text-xl mb-1">Gloss</h3>
+<p class="text-xs text-gray-500">Reflection Index</p>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-gray-800 p-5 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 float-anim" style="animation-delay: 1s;">
+<div class="relative w-16 h-16 mb-4">
+<svg class="w-full h-full" viewBox="0 0 100 100">
+<circle class="text-gray-200 dark:text-gray-800 stroke-current" cx="50" cy="50" fill="transparent" r="40" stroke-width="8"></circle>
+<circle class="text-gray-900 dark:text-white stroke-current circle-progress" cx="50" cy="50" fill="transparent" r="40" stroke-dasharray="251.2" stroke-dashoffset="60" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+<span class="text-sm font-bold">5yr</span>
+</div>
+</div>
+<h3 class="font-display text-xl mb-1">Durability</h3>
+<p class="text-xs text-gray-500">Paint Protection</p>
+</div>
+</div>
+</section>
+<section class="mb-12">
+<div class="px-6 flex justify-between items-end mb-6">
+<h2 class="font-display text-3xl text-gray-900 dark:text-white">Signature <br/> Services</h2>
+<button class="text-sm border-b border-gray-900 dark:border-white pb-0.5 hover:opacity-70 transition-opacity">View Menu</button>
+</div>
+<div class="flex overflow-x-auto hide-scrollbar px-6 gap-5 pb-8 snap-x snap-mandatory">
+<div class="min-w-[280px] snap-center bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-800 flex flex-col">
+<div class="h-40 overflow-hidden relative">
+<img alt="Interior detailing of a luxury car" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDja9i6E6c0hMqV01JE-f08JzcDO7nsqLzynsMc3npVU0Xd987WsKpQKfiq6O11FhydXHCU3cmcTHoFHk0_oiOMB9aIRHyQoAuCdk0nRQysUu1wMvLaVqxt-2kdeDNZRZrAJpTGDOp9_qhfrshhL-e0E1VSOpGwamVg9FWkVe8ZRmdC72Y6qsElT5iI8ckK5yqkMcVJiHGCRhgCglOp0Z8XhrbVhaySxRjaMZaalMy5Ah24MIwdTgTpNJD6z0rqoRQSk3VSyBynZiWP"/>
+<div class="absolute top-3 right-3 bg-black/70 backdrop-blur text-white text-xs px-2 py-1 rounded">2 Hrs</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-display text-xl mb-2">Interior Revival</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">Deep cleaning of all surfaces, leather conditioning, and odor elimination.</p>
+</div>
+<div class="mt-4 flex justify-between items-center">
+<span class="font-semibold text-lg">$149</span>
+<button class="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
+<span class="material-icons text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="min-w-[280px] snap-center bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-800 flex flex-col">
+<div class="h-40 overflow-hidden relative">
+<img alt="Polishing a dark colored car" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvinDpwRnzUb4C9zarWEPWsBoTeVykNu-Sl48ApxhAMyp4FvR2C1PVFeB4vhz1JVsmrf2ToXtKJP8eXykAWKL1kEI7BifpOUrEL36-gjyPgw89y8XDVzKR0F7fbi__S57QT-fRCtrKGkMHDGHSbatWQy_B_kIwIgAHXwnJ7Qu3kmHsicCyvM8PIS_X8UVY8sTF17Sq3bfDeuzZgWvf4QcHi9EInZjQf6gA6b15-sLgyHyuqKX3w2ex7f7cT0axL7VolLkVvLebsd3f"/>
+<div class="absolute top-3 right-3 bg-black/70 backdrop-blur text-white text-xs px-2 py-1 rounded">4 Hrs</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-display text-xl mb-2">Paint Correction</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">Remove swirls, scratches and oxidation to restore showroom shine.</p>
+</div>
+<div class="mt-4 flex justify-between items-center">
+<span class="font-semibold text-lg">$399</span>
+<button class="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
+<span class="material-icons text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="min-w-[280px] snap-center bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-800 flex flex-col">
+<div class="h-40 overflow-hidden relative">
+<img alt="Water beading on car paint" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnxskdKd9hJHkldHjO7hHgubVR97u1sXJlaW7NvbhCvtDFoidw79Ix13fn6wq3DIcLlZp8HXgzGker6a0DCPfLnX8njgczXIwb9WNtcnKYoIVwBQ-oEUPKmnlijGfHBHNnMe-brWjaU6049ZhAVrkl3MgpIFaUlR8KVubvBOuD65v5lxc9RJAymx9U3onUJYP5wSQAr8TgHX05ynd-pZc5KpPpRPkWEXx2pNIs_UaXU94gNtDItpRVdBpIx8gGPrveKrs0Zl7rMtoE"/>
+<div class="absolute top-3 right-3 bg-black/70 backdrop-blur text-white text-xs px-2 py-1 rounded">1 Day</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-display text-xl mb-2">Graphene Coating</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">Next-level protection harder and more durable than ceramic.</p>
+</div>
+<div class="mt-4 flex justify-between items-center">
+<span class="font-semibold text-lg">$899</span>
+<button class="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
+<span class="material-icons text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="px-6 mb-12">
+<h2 class="font-display text-2xl mb-8 text-center dark:text-white">Why Clients Choose Us</h2>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center shrink-0">
+<span class="material-icons text-gray-700 dark:text-gray-300">verified_user</span>
+</div>
+<div>
+<h4 class="font-bold text-lg dark:text-white">Certified Experts</h4>
+<p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Our technicians are factory trained and certified in advanced coating application.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center shrink-0">
+<span class="material-icons text-gray-700 dark:text-gray-300">schedule</span>
+</div>
+<div>
+<h4 class="font-bold text-lg dark:text-white">Time-Optimized</h4>
+<p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Book instantly. We respect your time with guaranteed start and finish windows.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center shrink-0">
+<span class="material-icons text-gray-700 dark:text-gray-300">eco</span>
+</div>
+<div>
+<h4 class="font-bold text-lg dark:text-white">Eco-Friendly</h4>
+<p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Using biodegradable products and water-reclamation systems for sustainable care.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="px-6 mb-24">
+<div class="bg-gray-50 dark:bg-gray-900 rounded-3xl p-8 text-center relative overflow-hidden">
+<span class="material-icons absolute top-4 left-4 text-6xl text-gray-200 dark:text-gray-800 opacity-50 z-0">format_quote</span>
+<div class="relative z-10">
+<div class="flex justify-center mb-4">
+<span class="material-icons text-gold-accent text-sm">star</span>
+<span class="material-icons text-gold-accent text-sm">star</span>
+<span class="material-icons text-gold-accent text-sm">star</span>
+<span class="material-icons text-gold-accent text-sm">star</span>
+<span class="material-icons text-gold-accent text-sm">star</span>
+</div>
+<p class="font-display italic text-xl text-gray-800 dark:text-gray-200 mb-6">"Absolutely stunned by the finish on my Model S. It looks better than the day I bought it. The booking process was seamless."</p>
+<div class="flex items-center justify-center gap-3">
+<div class="w-8 h-8 rounded-full bg-gray-300 overflow-hidden">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC1HZ6zXqoeySA-KjWc6upBPSDYavcCMDggE6VQP-NtKgRa1mqkkeJ3ckBYwdNKA-jkaMjfEYbyWYe3sGok0w0v5VyFDRKIh88LlBfp3bPYY9b6zTmfVRFH-rnCL2oGlDrEIsnzfCdO0v9dOSY6SiHY9Piw7gxns_qz-oKDFobt1PpxGkqdzS5zt5WMQY1ECFsCdzYhqQ4Cjed2B26AZ9Ihsm2g7xZCtbjKtilFSPCAPUB5OJvRMzYFsBOxvRseWxvBDDz19GVO1jG"/>
+</div>
+<div class="text-left">
+<p class="text-sm font-bold dark:text-white">James M.</p>
+<p class="text-xs text-gray-500 uppercase tracking-wide">Hamilton, NZ</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<div class="fixed bottom-0 left-0 w-full p-6 z-50 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark pointer-events-none">
+<div class="max-w-md mx-auto pointer-events-auto">
+<button class="w-full bg-primary text-white py-4 rounded-xl text-lg font-medium shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-3">
+<span>Book Appointment</span>
+<span class="material-icons text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="fixed inset-0 z-[-1] opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+
+</body></html>

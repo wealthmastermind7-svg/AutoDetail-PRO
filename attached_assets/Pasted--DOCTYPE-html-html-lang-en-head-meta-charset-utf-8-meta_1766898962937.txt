@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Effortless Booking - Auto Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1a1a1a", 
+                        "background-light": "#f5f5f5",
+                        "background-dark": "#0a0a0a",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#171717",
+                        "border-light": "#e5e5e5",
+                        "border-dark": "#262626",
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "12px",
+                        'xl': "20px",
+                        '2xl': "32px",
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                },
+            },
+        };
+    </script>
+<style>.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }.video-bg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .video-bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%);
+            z-index: 1;
+        }.glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .dark .glass-panel {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-sans antialiased min-h-screen flex justify-center overflow-hidden relative">
+<div class="video-bg-container fixed inset-0">
+<img alt="Abstract close-up of car detailing polishing process, water beads on black paint" class="w-full h-full object-cover opacity-90 dark:opacity-40 transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1ARwnvRc8ex00_N34zqXjuZzmSfik3dOuR3-S2f6usl-o-pqVNiMI63MDM1VC1AkIAX1QUpt0DrV0w8fRDBINMUjPq7t-GlSh1ydYRGaP94CaMvz4WrefpFFczXFrJnRZSp5Fxvt-ltA_xVYeVCLVjNa0DHGYjw-db6EWHWRT7XZiiqxKDfp6dCxfVVJEJJjXwqvsC5iU1NGubEhyecDGo1QX_T_Zrm_Ro5gE9Zj0DqpVDxcD1W9XbBOtbiEGSYWrsZJqMh8CTDbX"/>
+<div class="absolute inset-0 bg-gradient-to-b from-white/80 via-white/50 to-white/90 dark:from-black/70 dark:via-black/40 dark:to-black/90 z-10 mix-blend-multiply dark:mix-blend-normal"></div>
+</div>
+<main class="w-full max-w-md h-full min-h-screen relative z-20 flex flex-col justify-between p-6 sm:p-8 overflow-y-auto no-scrollbar">
+<header class="flex justify-between items-center w-full pt-4 animate-fade-in-up" style="animation-delay: 0.1s;">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold font-display text-lg">
+                    B
+                </div>
+<span class="font-display font-bold text-xl tracking-tight text-gray-900 dark:text-white">BookFlow</span>
+</div>
+<button class="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">
+                Skip
+            </button>
+</header>
+<section class="flex-1 flex flex-col justify-center py-12">
+<div class="space-y-2 mb-10 animate-fade-in-up" style="animation-delay: 0.2s;">
+<h1 class="font-display text-6xl leading-[0.9] text-gray-900 dark:text-white tracking-tighter">
+<span class="block italic font-light opacity-80 text-4xl mb-2">Simply</span>
+                    Effortless.
+                </h1>
+<p class="text-lg text-gray-700 dark:text-gray-300 font-light mt-4 max-w-[85%] leading-relaxed">
+                    Premium detailing appointments booked in seconds. No calls. No wait.
+                </p>
+</div>
+<div class="relative w-full py-8 animate-fade-in-up" style="animation-delay: 0.4s;">
+<div class="absolute inset-0 bg-white/40 dark:bg-black/40 blur-3xl rounded-full transform -translate-y-4"></div>
+<div class="relative glass-panel rounded-2xl p-6 shadow-2xl dark:shadow-black/50 overflow-hidden group">
+<div class="absolute top-0 -left-[100%] w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 animate-[shimmer_3s_infinite]"></div>
+<div class="flex justify-between items-end relative z-10">
+<div class="flex flex-col items-center gap-2 group-hover:-translate-y-1 transition-transform duration-500">
+<span class="font-display text-4xl text-gray-300 dark:text-gray-600">01</span>
+<div class="w-12 h-12 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark flex items-center justify-center shadow-lg">
+<span class="material-icons text-gray-800 dark:text-white text-xl">calendar_today</span>
+</div>
+<span class="text-[10px] font-semibold uppercase tracking-widest text-gray-500">Pick</span>
+</div>
+<div class="h-px bg-gray-300 dark:bg-gray-700 flex-1 mb-8 mx-2 relative">
+<div class="absolute top-1/2 left-0 w-full h-full -translate-y-1/2 bg-gradient-to-r from-transparent via-primary to-transparent opacity-20"></div>
+</div>
+<div class="flex flex-col items-center gap-2 -mt-4 group-hover:-translate-y-2 transition-transform duration-500 delay-75">
+<span class="font-display text-5xl text-gray-900 dark:text-white">02</span>
+<div class="w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center shadow-xl shadow-primary/30 z-10 scale-110">
+<span class="material-icons text-2xl">check</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-widest text-primary mt-1">Confirm</span>
+</div>
+<div class="h-px bg-gray-300 dark:bg-gray-700 flex-1 mb-8 mx-2 relative"></div>
+<div class="flex flex-col items-center gap-2 group-hover:-translate-y-1 transition-transform duration-500 delay-100">
+<span class="font-display text-4xl text-gray-300 dark:text-gray-600">03</span>
+<div class="w-12 h-12 rounded-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark flex items-center justify-center shadow-lg">
+<span class="material-icons text-gray-800 dark:text-white text-xl">auto_awesome</span>
+</div>
+<span class="text-[10px] font-semibold uppercase tracking-widest text-gray-500">Shine</span>
+</div>
+</div>
+</div>
+<div class="absolute -right-2 -top-2 bg-surface-light dark:bg-surface-dark py-2 px-4 rounded-xl shadow-lg border border-border-light dark:border-border-dark flex items-center gap-3 animate-float">
+<div class="flex -space-x-2">
+<img alt="User Avatar" class="w-6 h-6 rounded-full border-2 border-white dark:border-gray-800" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwEJ1CCwrw0iNFGBBcOQpr-pgsBbHgOXF7dIfy88M_jn8sbU1-EcSzy2S9cNCurGu9CId3ejLwU1eju0bEaEYXbFBlt0o37hvl_Pjs264Ow-W88GQeeYrpCVxfkkeF18x3rMToSs7D6lA9EVjVsQNJwJ9StrTP6cfrV9LgCrZfklN9A5IFcu6zlevEirJ6AFPYG6K41gQ1JALQJhvUdz0a6dmeqOt2kS1UXb81iz6-mGRfAY3aTSf33VRbYgREFGbxSO7kmFRkxzVs"/>
+<img alt="User Avatar" class="w-6 h-6 rounded-full border-2 border-white dark:border-gray-800" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmvFa3cHpf623RHB6xk0bEXryQJAc8bc-hmW3-R2Gw5uwkftfD6fzSAXNibG6xbvriZ4Opb-uT9SEyX1Ikb-EgDOzzi727RiRBapyegL9xt_EBOA403UJkVPhOuPX-KwyhYYpImtTKk0ch1qjTJ3cRYSRR8XY5Ma6ZuyN4Pqs7j4wjeFhHAai_sqRt3Phah1fCav_jed7x3JXrxtTJLvKN3-S4BWfUSH55c2GdE4-9tx55JTEsdnINaUgYsFQwyKIeUYslKDCOht9h"/>
+<img alt="User Avatar" class="w-6 h-6 rounded-full border-2 border-white dark:border-gray-800" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWvrRZfiXOuNfXR77Rb0iCsiDZHfC0Z6DsmUXCweDXxZpQP8a6UEqJl0QtinABf3fnXtkk54kyS1op-zdLSiPE-ZoA2YY5GZkp3hxlEf5z2LnJx0ZDV0FqFY-iDuf5mPWtmnkiJa2gzi3pmnUTCD4nJhEiES45LTCv5WWFQZtwy4UNN2vZR664Kr6CkeL3GEZ2O6em-z1pM46Ac4qLRpJZsunFODoYhKTRpdfXlcUiONSo8V1JQvZD__8YUZYSqo7brm_DsFnutwyh"/>
+</div>
+<span class="text-xs font-semibold text-gray-800 dark:text-gray-200">10k+ Bookings</span>
+</div>
+</div>
+</section>
+<footer class="space-y-4 pb-6 animate-fade-in-up" style="animation-delay: 0.6s;">
+<button class="w-full bg-primary hover:bg-black dark:hover:bg-white/90 text-white dark:text-white py-4 rounded-xl font-medium text-lg shadow-xl shadow-primary/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2 group relative overflow-hidden">
+<div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shine_1s_ease-in-out]"></div>
+<span>Get Started</span>
+<span class="material-icons text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<div class="text-center">
+<button class="text-gray-600 dark:text-gray-400 font-medium text-sm hover:text-gray-900 dark:hover:text-white transition-colors">
+                    View Demo Services
+                </button>
+</div>
+<div class="flex justify-center gap-2 pt-4">
+<div class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+<div class="w-8 h-2 rounded-full bg-primary"></div>
+<div class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+</div>
+</footer>
+</main>
+<div class="fixed top-0 right-0 w-64 h-64 bg-gradient-to-br from-gray-200/20 to-transparent dark:from-white/5 dark:to-transparent rounded-bl-full pointer-events-none z-10"></div>
+<div class="fixed bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-gray-200/20 to-transparent dark:from-white/5 dark:to-transparent rounded-tr-full pointer-events-none z-10"></div>
+<script>
+        // Simple animation for the shimmer effect in CSS
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = `
+            @keyframes shimmer {
+                0% { transform: translateX(-150%) skewX(-12deg); }
+                100% { transform: translateX(150%) skewX(-12deg); }
+            }
+            @keyframes shine {
+                0% { transform: translateX(-100%); }
+                100% { transform: translateX(100%); }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+    </script>
+
+</body></html>
